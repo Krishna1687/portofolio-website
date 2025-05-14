@@ -1,0 +1,20 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f0f8ff;
+}
+header .banner {
+  background: linear-gradient(to right, #00416a, #e4e5e6);
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+section {
+  padding: 20px;
+  background: white;
+  margin: 20px;
+  border-radius: 10px;
+}
+ul {
+  list-style-type: square;
+}
