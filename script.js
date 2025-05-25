@@ -44,23 +44,32 @@ ScrollReveal().reveal('.hero-image, .about-image, .service-box, .portfolio-box',
 
 // Form Submission
 const form = document.querySelector('form');
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    // Get form values
-    const name = form.querySelector('input[type="text"]').value;
-    const email = form.querySelector('input[type="email"]').value;
-    const phone = form.querySelector('input[type="number"]').value;
-    const subject = form.querySelectorAll('input[type="text"]')[1].value;
-    const message = form.querySelector('textarea').value;
-    
-    // Here you would typically send the data to a server
-    console.log({ name, email, phone, subject, message });
-    
-    // Show success message
-    alert('Message sent successfully!');
-    form.reset();
+
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            alert('Message sent successfully!');
+            form.reset();
+        } else {
+            alert('Something went wrong. Please try again.');
+        }
+    } catch (error) {
+        alert('Error submitting form.');
+        console.error(error);
+    }
 });
+
 
 // Smooth Scrolling for Anchor Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
